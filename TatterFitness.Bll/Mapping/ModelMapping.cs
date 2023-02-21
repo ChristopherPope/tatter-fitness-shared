@@ -63,7 +63,9 @@ namespace TatterFitness.Bll.Mapping
                 .ForMember(dest => dest.WorkoutExerciseSets, opt => opt.MapFrom(source => source.Sets))
                 .ForMember(dest => dest.WorkoutExerciseModifiers, opt => opt.MapFrom(source => source.Mods));
 
-            CreateMap<WorkoutExerciseSetEntity, WorkoutExerciseSet>().ReverseMap();
+            CreateMap<WorkoutExerciseSetEntity, WorkoutExerciseSet>()
+                .ForMember(dest => dest.ExerciseType, opt => opt.MapFrom(source => source.WorkoutExercise.Exercise.ExerciseTypeId))
+                .ReverseMap();
         }
 
         private void MapUser()
