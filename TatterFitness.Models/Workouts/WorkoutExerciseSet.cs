@@ -17,7 +17,6 @@ namespace TatterFitness.Models.Workouts
         public double Weight { get; set; }
         public int RepCount { get; set; }
         public double Volume { get; set; }
-        public ExerciseTypes ExerciseType { get; set; }
 
         public string Key
         {
