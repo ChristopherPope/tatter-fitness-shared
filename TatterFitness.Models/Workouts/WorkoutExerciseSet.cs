@@ -34,6 +34,7 @@ namespace TatterFitness.Models.Workouts
         public WorkoutExerciseSet(int setNumber, ExerciseTypes exerciseType)
         {
             SetNumber = setNumber;
+            ExerciseType = exerciseType;
             switch (exerciseType)
             {
                 case ExerciseTypes.Cardio:
