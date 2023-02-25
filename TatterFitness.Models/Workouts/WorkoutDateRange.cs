@@ -2,7 +2,7 @@
 {
     public class WorkoutDateRange
     {
-        public DateTime? InclusiveFrom { get; set; }
-        public DateTime? InclusiveTo { get; set; }
+        public DateTime InclusiveFrom { get; set; }
+        public DateTime InclusiveTo { get; set; }
     }
 }
