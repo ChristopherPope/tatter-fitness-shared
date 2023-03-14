@@ -18,27 +18,17 @@ namespace TatterFitness.Bll.Services
 
         public IEnumerable<Workout> ReadWorkouts(WorkoutDateRange dateRange) // todo: move to workouts service
         {
-            if (!dateRange.InclusiveTo.HasValue || !dateRange.InclusiveFrom.HasValue)
-            {
-                throw new InvalidOperationException("Must pass a value for each date in the date range.");
-            }
-
-            dateRange.InclusiveFrom = dateRange.InclusiveFrom.Value.Date;
-            dateRange.InclusiveTo = dateRange.InclusiveTo.Value.AddDays(1).Date.AddSeconds(-1);
-            var workouts = uow.Workouts.ReadWorkouts(dateRange.InclusiveFrom.Value, dateRange.InclusiveTo.Value);
+            dateRange.InclusiveFrom = dateRange.InclusiveFrom.Date;
+            dateRange.InclusiveTo = dateRange.InclusiveTo.AddDays(1).Date.AddSeconds(-1);
+            var workouts = uow.Workouts.ReadWorkouts(dateRange.InclusiveFrom, dateRange.InclusiveTo);
 
             return mapper.Map<IEnumerable<Workout>>(workouts);
         }
 
         public List<EventDay> ReadWorkoutEvents(WorkoutDateRange dateRange)
         {
-            if (!dateRange.InclusiveTo.HasValue || !dateRange.InclusiveFrom.HasValue)
-            {
-                throw new InvalidOperationException("Must pass a value for each date in the date range.");
-            }
-
-            dateRange.InclusiveFrom = dateRange.InclusiveFrom.Value.Date;
-            dateRange.InclusiveTo = dateRange.InclusiveTo.Value.AddDays(1).Date.AddSeconds(-1);
+            dateRange.InclusiveFrom = dateRange.InclusiveFrom.Date;
+            dateRange.InclusiveTo = dateRange.InclusiveTo.AddDays(1).Date.AddSeconds(-1);
             var events = uow.Workouts
                 .Read(w => w.Date >= dateRange.InclusiveFrom && w.Date <= dateRange.InclusiveTo)
                 .ToDictionary(w => w.Date, w => w.Id)
@@ -62,8 +52,8 @@ namespace TatterFitness.Bll.Services
             var lastWorkout = uow.Workouts.Read(w => w.UserId == CurrentUserId, q => q.OrderByDescending(w => w.Date)).FirstOrDefault();
             return new WorkoutDateRange
             {
-                InclusiveFrom = firstWorkout?.Date,
-                InclusiveTo = lastWorkout?.Date
+                InclusiveFrom = firstWorkout?.Date ?? DateTime.Now,
+                InclusiveTo = lastWorkout?.Date ?? DateTime.Now
             };
         }
     }
