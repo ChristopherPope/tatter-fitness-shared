@@ -18,6 +18,8 @@ namespace TatterFitness.Models.Workouts
         public int WorkoutId { get; set; }
         public DateTime WorkoutDate { get; set; }
         public int ExerciseId { get; set; }
+        public int FtoWeekNumber { get; set; }
+        public int FtoTrainingMax { get; set; }
         public int Sequence { get; set; }
         public string? Notes { get; set; }
         public ExerciseTypes ExerciseType { get; set; }
