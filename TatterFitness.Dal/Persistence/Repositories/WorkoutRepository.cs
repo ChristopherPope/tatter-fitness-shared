@@ -16,12 +16,12 @@ namespace TatterFitness.Dal.Persistence.Repositories
         {
             return entities
                 .Include(w => w.WorkoutExercises)
-                //.ThenInclude(we => we.Exercise)
-                //.Include(w => w.WorkoutExercises)
-                //    .ThenInclude(we => we.WorkoutExerciseModifiers)
-                //    .ThenInclude(wem => wem.ExerciseModifier)
-                //.Include(w => w.WorkoutExercises)
-                //    .ThenInclude(we => we.WorkoutExerciseSets.OrderBy(s => s.SetNumber))
+                .ThenInclude(we => we.Exercise)
+                .Include(w => w.WorkoutExercises)
+                    .ThenInclude(we => we.WorkoutExerciseModifiers)
+                    .ThenInclude(wem => wem.ExerciseModifier)
+                .Include(w => w.WorkoutExercises)
+                    .ThenInclude(we => we.WorkoutExerciseSets.OrderBy(s => s.SetNumber))
                 .Where(w => w.Date >= inclusiveFrom && w.Date <= inclusiveTo)
                 .ToList();
         }
@@ -30,12 +30,12 @@ namespace TatterFitness.Dal.Persistence.Repositories
         {
             return entities
                 .Include(w => w.WorkoutExercises)
-                //    .ThenInclude(we => we.Exercise)
-                //.Include(w => w.WorkoutExercises)
-                //    .ThenInclude(we => we.WorkoutExerciseModifiers)
-                //    .ThenInclude(wem => wem.ExerciseModifier)
-                //.Include(w => w.WorkoutExercises)
-                //    .ThenInclude(we => we.WorkoutExerciseSets.OrderBy(s => s.SetNumber))
+                    .ThenInclude(we => we.Exercise)
+                .Include(w => w.WorkoutExercises)
+                    .ThenInclude(we => we.WorkoutExerciseModifiers)
+                    .ThenInclude(wem => wem.ExerciseModifier)
+                .Include(w => w.WorkoutExercises)
+                    .ThenInclude(we => we.WorkoutExerciseSets.OrderBy(s => s.SetNumber))
                 .Where(w => w.Id == workoutId && w.UserId == userId)
                 .AsNoTracking()
                 .First();
