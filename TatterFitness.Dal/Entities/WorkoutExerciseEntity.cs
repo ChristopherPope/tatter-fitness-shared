@@ -15,8 +15,8 @@ namespace TatterFitness.Dal.Entities
         }
 
         public int Id { get; set; }
-        public int FtoTrainingMax { get; set; }
-        public int FtoWeekNumber { get; set; }
+        public int? FtoTrainingMax { get; set; }
+        public int? FtoWeekNumber { get; set; }
         public int WorkoutId { get; set; }
         public int ExerciseId { get; set; }
         public int Sequence { get; set; }
