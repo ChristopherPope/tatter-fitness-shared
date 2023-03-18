@@ -26,6 +26,10 @@ namespace TatterFitness.Bll.Mapping
             CreateMap<WorkoutEntity, ExerciseHistory>()
                 .ForMember(dest => dest.WorkoutName, cfg => cfg.MapFrom(src => src.Name))
                 .ForMember(dest => dest.WorkoutDate, cfg => cfg.MapFrom(src => src.Date))
+                .ForMember(dest => dest.FtoTrainingMax, cfg =>
+                    cfg.MapFrom(src => src.WorkoutExercises.Select(we => we.FtoTrainingMax).First()))
+                .ForMember(dest => dest.FtoWeekNumber, cfg =>
+                    cfg.MapFrom(src => src.WorkoutExercises.Select(we => we.FtoWeekNumber).First()))
                 .ForMember(dest => dest.Notes, cfg =>
                     cfg.MapFrom(src => src.WorkoutExercises.Select(we => we.Notes).First()))
                 .ForMember(dest => dest.ExerciseName, cfg =>

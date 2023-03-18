@@ -2,7 +2,7 @@
 using TatterFitness.Models.Workouts;
 
 namespace TatterFitness.Models.Exercises
-{ 
+{
     public class ExerciseHistory
     {
         public string WorkoutName { get; set; } = String.Empty;
@@ -12,6 +12,8 @@ namespace TatterFitness.Models.Exercises
         public IEnumerable<WorkoutExerciseSet> Sets { get; set; } = Enumerable.Empty<WorkoutExerciseSet>();
         public IEnumerable<WorkoutExerciseModifier> Mods { get; set; } = Enumerable.Empty<WorkoutExerciseModifier>();
         public int WorkoutId { get; set; }
+        public int FtoTrainingMax { get; set; }
+        public int FtoWeekNumber { get; set; }
         public string Notes { get; set; } = String.Empty;
     }
 }
